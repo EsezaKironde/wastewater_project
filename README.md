@@ -18,18 +18,19 @@ I really liked this group's README STRUCTURE:
 .
 ├── code/                           # R scripts for each step of analysis
 │   ├── 0_clean_data.R                # Cleans the raw data
-│   ├── blah                    # Fits the logistic regression model
-│   ├── blah                  # Generates and saves required figures
-│   └── render_report.R             # Renders the final report
+│   ├── 1_summary_statistics.R                    # Fits the logistic regression model
+│   ├── 2_time_series_plot.R                  # Generates and saves required figures
+│   └── 3_render_report.R             # Renders the final report
 │
 ├── data/
-│   ├── heart_disease.csv           # Raw input dataset 
-|   ├── data_hd_cleanded.csv        # Cleanded dataset
+│   ├── .raw data           # Raw input dataset 
+|   ├── fulton_data.csv        # Cleanded dataset
 │
 ├── output/
 │   ├── model_results.csv           # Summary table of final logistic model
 │   ├── stress_level_plot.png       # Bar plot of stress level by heart disease status
 │   ├── cholesterol_level_plot.png  # Boxplot of cholesterol by heart disease status
+│   ├── .gitkeep
 │
 ├── Wastewater_Analysis.Rmd      # Final report (renders to HTML)
 ├── Makefile                        # Automates full workflow
@@ -51,10 +52,10 @@ make
 ### Option 2: Run each step manually
 
 ```bash
-Rscript code/clean_data.R
-Rscript code/model.R
-Rscript code/figures.R
-Rscript code/render_report.R
+Rscript code/0_clean_data.R
+Rscript code/1_summary_statistics.R
+Rscript code/2_time_series_plot.R
+Rscript code/3_render_report.R
 ```
 
 ---

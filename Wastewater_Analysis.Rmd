@@ -1,0 +1,53 @@
+
+---
+title: "Wastewater Analysis"
+author: "Eseza Kironde and Zoli Smith"
+output:
+  html_document
+---
+
+```{r set chunk options, echo = FALSE}
+library(knitr)
+opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               message = FALSE
+)
+
+```
+
+# Introduction
+
+Wastewater surveillance has emerged as a critical epidemiological tool for tracking infectious disease spread, particularly during the SARS-CoV-2 pandemic. This analysis of the National Wastewater Surveillance System (NWSS) dataset provides a comprehensive examination of COVID-19 viral concentrations across different geographic regions. By analyzing SARS-CoV-2 RNA levels in wastewater, we offer an innovative approach to monitoring community viral prevalence that complements traditional clinical testing methods.
+
+# Data
+Our research utilizes the Centers for Disease Control and Prevention (CDC) wastewater surveillance dataset, capturing a comprehensive time history of SARS-CoV-2 concentrations as of March 7, 2025. The dataset provides a unique perspective on viral transmission by analyzing genetic material found in wastewater treatment plants and upstream collection sites.
+
+## Descriptive Analysis
+
+```{r, summary-stats}
+#read in the object we outputted
+table_one <- readRDS(
+  file = here::here("output/table_one.rds")
+)
+
+#print object
+table_one
+```
+
+
+
+
+## Time series plot
+
+```{r, time-series}
+
+```
+
+
+
+
+
+
+
+
+
