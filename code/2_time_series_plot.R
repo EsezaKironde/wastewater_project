@@ -23,6 +23,7 @@ monthly_data <- ww_data %>%
     count = n()
   )
 
+
 # Create a monthly bar plot with vertical month labels
 plot <- ggplot(monthly_data, aes(x = month, y = avg_ptc_15d, fill = avg_ptc_15d > 0)) +
   geom_col(width = 20) +
@@ -56,5 +57,9 @@ ggsave(here::here("output/monthly_wastewater_changes.png"),
        dpi = 300,
        device = "png"
 )
+
+
+# Also- save the monthly summary data for the report
+saveRDS(monthly_data, here::here("output", "fulton_monthly_summary.rds"))
 
 print("I did time series plot without any errors!")

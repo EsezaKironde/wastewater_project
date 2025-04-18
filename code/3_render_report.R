@@ -3,7 +3,7 @@ library(markdown)
 
 here::i_am("code/3_render_report.R")
 
-rmarkdown::render("Wastewater_Disease_Analysis.Rmd")
+rmarkdown::render("Wastewater_Analysis.Rmd")
 
 
-print("I did step 3 without any errors!")
+print("I rendered the report without any errors!")
