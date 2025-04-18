@@ -1,9 +1,14 @@
 WASTEWATER PROJECT
 
 
-Dataset: NWSS Public SARS-CoV-2 Wastewater Data
+#Eseza's computer: 
+setwd("C:/Users/nesez/OneDrive/Desktop/Data_Science_Toolkit/midterm/wastewater_project")
 
-This dataset from the National Wastewater Surveillance System tracks SARS-CoV-2 concentrations in wastewater across the US. Updated daily, it contains metrics like 15-day percent changes and historical percentiles that help public health officials monitor COVID-19 community spread through wastewater analysis.
+#Zoli's computer: 
+setwd("/Users/zolismith/Desktop/wastewater_project"")
+
+
+
 
 
 

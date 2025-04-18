@@ -1,7 +1,15 @@
 
 #set directory to project directory
 
+
+#Eseza's computer: setwd("C:/Users/nesez/OneDrive/Desktop/Data_Science_Toolkit/midterm/wastewater_project")
+
+#Zoli's computer: setw("/Users/zolismith/Desktop/wastewater_project")
+
+
+
 library(here)
+
 here::i_am("code/0_clean_data.R")
 absolute_path_to_data <- here::here("data", "NWSS_Public_SARS-CoV-2_Wastewater_Metric_Data_20250307.csv")
 

@@ -1,68 +1,81 @@
+
+#set directory to project directory
+
+#Eseza's computer: setwd("C:/Users/nesez/OneDrive/Desktop/Data_Science_Toolkit/midterm/wastewater_project")
+
+#Zoli's computer: setw("/Users/zolismith/Desktop/wastewater_project")
+
 here::i_am("code/2_time_series_plot.R")
+absolute_path_to_data <- here::here("data", "NWSS_Public_SARS-CoV-2_Wastewater_Metric_Data_20250307.csv")
 
-library(ggplot2)
-library(lubridate)
-library(dplyr)
+raw_wastewater_data <- read.csv(absolute_path_to_data, header = TRUE)
 
-#Read in the dataset
-ww_data <- readRDS(
-  file = here::here("data/clean_data.rds")
-)
+raw_wastewater_data <- raw_wastewater_data %>%
+  mutate(date = ymd(date_start)) %>%
+  filter(!is.na(ptc_15d))  # ptc_15d = 15-day avg SARS-CoV-2 RNA concentration
 
-
-# Convert date_start to Date object
-ww_data$date_start <- as.Date(ww_data$date_start)
-
-# Add a month column
-ww_data$month <- floor_date(ww_data$date_start, "month")
-
-# Group by month and calculate average percent change
-monthly_data <- ww_data %>%
-  group_by(month) %>%
-  summarize(
-    avg_ptc_15d = mean(ptc_15d, na.rm = TRUE),
-    count = n()
+# Temporal summary for Fulton County, GA
+fulton_data <- raw_wastewater_data %>%
+  filter(reporting_jurisdiction == "Georgia", county_names == "Fulton") %>%
+  arrange(date) %>%
+  mutate(
+    month = floor_date(date, "month"),
+    roll_avg = rollmean(ptc_15d, 7, fill = NA),
+    is_peak = lag(roll_avg) < roll_avg & lead(roll_avg) < roll_avg
   )
 
+#  summary statistics by month
+fulton_summary <- fulton_data %>%
+  group_by(month) %>%
+  summarise(
+    mean_ptc = mean(ptc_15d, na.rm = TRUE),
+    max_ptc = max(ptc_15d, na.rm = TRUE),
+    n_obs = n(),
+    .groups = "drop"
+  )
 
-# Create a monthly bar plot with vertical month labels
-plot <- ggplot(monthly_data, aes(x = month, y = avg_ptc_15d, fill = avg_ptc_15d > 0)) +
-  geom_col(width = 20) +
-  geom_text(aes(label = paste0(round(avg_ptc_15d, 1), "%")), 
-            vjust = ifelse(monthly_data$avg_ptc_15d >= 0, -0.5, 1.5),
-            color = "black") +
-  geom_hline(yintercept = 0, linetype = "solid", color = "black") +
-  scale_fill_manual(values = c("firebrick", "forestgreen"), guide = "none") +
+saveRDS(fulton_summary, file = here("output", "fulton_monthly_summary.rds"))
+
+# Time-series plot: ptc_15d over time
+p1 <- ggplot(fulton_data, aes(x = date, y = ptc_15d)) +
+  geom_line(color = "steelblue") +
+  geom_line(aes(y = roll_avg), color = "darkred", linetype = "dashed") +
   labs(
-    title = "Monthly Average SARS-CoV-2 Change in Wastewater",
-    subtitle = "Fulton County, GA",
-    x = "",
-    y = "Average Percent Change"
+    title = "SARS-CoV-2 Viral Load in Fulton County, GA",
+    subtitle = "15-day average concentrations with 7-day rolling average",
+    x = "Date",
+    y = "ptc_15d (viral concentration)"
   ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(face = "bold"),
-    panel.grid.minor = element_blank(),
-    panel.grid.major.x = element_blank(),
-    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)
-  ) +
-  scale_x_date(date_labels = "%B %Y", date_breaks = "1 month") +
-  scale_y_continuous(labels = function(x) paste0(x, "%"))
+  theme_minimal()
+
+# Plot detected peaks
+peak_data <- fulton_data %>% filter(is_peak == TRUE)
+p2 <- p1 +
+  geom_point(data = peak_data, aes(x = date, y = ptc_15d), color = "red", size = 2)
+
+# Save plots
+ggsave(filename = here("output", "fulton_time_series.png"), plot = p2, width = 8, height = 5)
 
 
-#Output files
-ggsave(here::here("output/monthly_wastewater_changes.png"),
-       plot,
-       width = 8, 
-       height = 5, 
-       dpi = 300,
-       device = "png"
-)
 
 
-# Also- save the monthly summary data for the report
-#saveRDS(
-#  monthly_data,
-#  file = here::here("output", "fulton_monthly_summary.rds")
-  #)
-#print("I did time series plot without any errors!")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+print("I did step 2 without any errors!")
+
