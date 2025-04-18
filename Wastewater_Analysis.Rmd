@@ -12,6 +12,10 @@ output:
 
 library(knitr)
 library(here)
+library(lubridate)
+library(dplyr)
+library(tidyverse)
+
 
 opts_chunk$set(echo = FALSE,
                warning = FALSE,
@@ -50,12 +54,7 @@ This section presents a temporal analysis of SARS-CoV-2 viral concentrations in 
 
 ```{r, time-series}
 
-# Load monthly summary table
-monthly_stats <- readRDS(here::here("output", "fulton_monthly_summary.rds"))
-
-
-knitr::kable(monthly_stats, caption = "Monthly Summary of SARS-CoV-2 Changes in Fulton County")
-
+knitr::include_graphics(here::here("output", "monthly_wastewater_changes.png"))
 
 ```
 

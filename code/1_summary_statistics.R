@@ -2,6 +2,9 @@
 
 here::i_am("code/1_summary_statistics.R")
 
+library(dplyr)
+library(tidyverse)
+
 #Read in the dataset
 ww_data <- readRDS(
   file = here::here("data/clean_data.rds")
@@ -25,4 +28,4 @@ saveRDS(
 )
 
 
-print("I printed table one without any errors!")
+#print("I printed table one without any errors!")

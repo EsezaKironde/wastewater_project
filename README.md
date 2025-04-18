@@ -76,5 +76,5 @@ date_end - Ending date of the interval for metric calculation.
 ptc_15d - Percent change in SARS-CoV-2 RNA levels over the 15-day interval, calculated from linear regression of log-transformed data.
 detect_prop_15d - Proportion of tests detecting SARS-CoV-2 over the 15-day period.
 percentile - Shows how current SARS-CoV-2 levels compare to historical levels at the same site (0% = lowest ever, 100% = highest ever).
-sampling_prior - Indicates whether wastewater sampling at the site began before or on December 1, 2021 (note: this appears cut off in the provided data).
+sampling_prior - Indicates whether wastewater sampling at the site began before or on December 1, 2021
 

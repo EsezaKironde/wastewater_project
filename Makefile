@@ -1,12 +1,15 @@
-Wastewater_Analysis.html: Wastewater_Analysis.Rmd data/clean_data.rds code/3_render_report.R
+all: Wastewater_Analysis.html
+
+Wastewater_Analysis.html: Wastewater_Analysis.Rmd data/clean_data.rds output/table_one.rds output/monthly_wastewater_changes.png
 	Rscript code/3_render_report.R
 
-Summary_statistics: code/1_summary_statistics.R data/clean_data.rds
-		Rscript code/1_summary_statistics.R
+output/table_one.rds: data/clean_data.rds code/1_summary_statistics.R
+	Rscript code/1_summary_statistics.R
 
-Time_series_plot: code/2_time_series_plot.R data/clean_data.rds
-		Rscript code/2_time_series_plot.R
+output/monthly_wastewater_changes.png: data/clean_data.rds code/2_time_series_plot.R
+	Rscript code/2_time_series_plot.R
 
-.PHONY: clean
+.PHONY: clean all
+
 clean:
-	rm -f output/*.rds && rm -f Wastewater_Analysis.html
+	rm -f output/*.rds output/*.png Wastewater_Analysis.html

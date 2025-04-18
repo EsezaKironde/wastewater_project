@@ -2,6 +2,7 @@ here::i_am("code/2_time_series_plot.R")
 
 library(ggplot2)
 library(lubridate)
+library(dplyr)
 
 #Read in the dataset
 ww_data <- readRDS(
@@ -60,6 +61,8 @@ ggsave(here::here("output/monthly_wastewater_changes.png"),
 
 
 # Also- save the monthly summary data for the report
-saveRDS(monthly_data, here::here("output", "fulton_monthly_summary.rds"))
-
-print("I did time series plot without any errors!")
+#saveRDS(
+#  monthly_data,
+#  file = here::here("output", "fulton_monthly_summary.rds")
+  #)
+#print("I did time series plot without any errors!")
