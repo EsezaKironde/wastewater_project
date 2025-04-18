@@ -1,7 +1,11 @@
 
 
-data_path <- here("data", "NWSS_Public_SARS-CoV-2_Wastewater_Metric_Data_20250307.csv")
-ww_data <- read_csv(data_path)
+here::i_am("code/1_summary_statistics.R")
+
+#Read in the dataset
+ww_data <- readRDS(
+  file = here::here("data/clean_data.rds")
+)
 
 table_one <- ww_data %>%
   group_by(wwtp_jurisdiction) %>%
@@ -15,20 +19,10 @@ table_one <- ww_data %>%
   ) %>%
   arrange(desc(n_sewersheds))
 
-saveRDS(table_one, here("output", "table_one.rds"))
+saveRDS(
+  table_one,
+  file = here::here("output/table_one.rds")
+)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-print("I did step 1 without any errors!")
+print("I printed table one without any errors!")
