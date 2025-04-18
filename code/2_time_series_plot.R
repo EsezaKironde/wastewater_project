@@ -1,3 +1,4 @@
+
 #set directory to project directory
 
 #Eseza's computer: setwd("C:/Users/nesez/OneDrive/Desktop/Data_Science_Toolkit/midterm/wastewater_project")
@@ -77,3 +78,4 @@ ggsave(filename = here("output", "fulton_time_series.png"), plot = p2, width = 8
 
 
 print("I did step 2 without any errors!")
+

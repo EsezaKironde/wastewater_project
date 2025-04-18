@@ -1,5 +1,6 @@
 WASTEWATER PROJECT
 
+
 #Eseza's computer: 
 setwd("C:/Users/nesez/OneDrive/Desktop/Data_Science_Toolkit/midterm/wastewater_project")
 
@@ -9,29 +10,29 @@ setwd("/Users/zolismith/Desktop/wastewater_project"")
 
 
 
-I really liked this group's README STRUCTURE:
+
 
 ## Repository structure
 
 ```
 .
 ├── code/                           # R scripts for each step of analysis
-│   ├── 0_clean_data.R                # Cleans the raw data
-│   ├── 1_summary_statistics.R                    # Fits the logistic regression model
-│   ├── 2_time_series_plot.R                  # Generates and saves required figures
-│   └── 3_render_report.R             # Renders the final report
+│   ├── 0_clean_data.R              # Cleans the raw data
+│   ├── 1_summary_statistics.R      # Generates summary statistics by jurisdiction
+│   ├── 2_time_series_plot.R        # Creates time series visualization for Fulton County
+│   └── 3_render_report.R           # Renders the final report
 │
 ├── data/
-│   ├── .raw data           # Raw input dataset 
-|   ├── fulton_data.csv        # Cleanded dataset
+│   ├── NWSS_Public_SARS-CoV-2_Wastewater_Metric_Data_20250307.csv  # Raw input dataset 
+│   ├── clean_data.rds             # Cleaned dataset
 │
 ├── output/
-│   ├── model_results.csv           # Summary table of final logistic model
-│   ├── stress_level_plot.png       # Bar plot of stress level by heart disease status
-│   ├── cholesterol_level_plot.png  # Boxplot of cholesterol by heart disease status
+│   ├── table_one.rds              # Summary statistics by jurisdiction
+│   ├── monthly_wastewater_changes.png  # Monthly average change visualization
+│   ├── fulton_monthly_summary.rds # Monthly data for Fulton County
 │   ├── .gitkeep
 │
-├── Wastewater_Analysis.Rmd      # Final report (renders to HTML)
+├── Wastewater_Analysis.Rmd        # Final report (renders to HTML)
 ├── Makefile                        # Automates full workflow
 ├── .gitignore                      # Prevents tracking of outputs and temp files
 └── README.md                       # This file
@@ -61,7 +62,9 @@ Rscript code/3_render_report.R
 
 
 
-Data Description:
+# Data Description:
+
+This dataset tracks COVID-19 levels in wastewater across different locations in the US, which helps public health officials monitor viral presence in communities.
 
 
 wwtp_jurisdiction - Two-letter abbreviation for the state, DC, territory, or Freely Associated State where the wastewater treatment plant is located.
@@ -78,6 +81,5 @@ date_end - Ending date of the interval for metric calculation.
 ptc_15d - Percent change in SARS-CoV-2 RNA levels over the 15-day interval, calculated from linear regression of log-transformed data.
 detect_prop_15d - Proportion of tests detecting SARS-CoV-2 over the 15-day period.
 percentile - Shows how current SARS-CoV-2 levels compare to historical levels at the same site (0% = lowest ever, 100% = highest ever).
-sampling_prior - Indicates whether wastewater sampling at the site began before or on December 1, 2021 (note: this appears cut off in the provided data).
+sampling_prior - Indicates whether wastewater sampling at the site began before or on December 1, 2021
 
-This dataset tracks COVID-19 levels in wastewater across different locations in the US, which helps public health officials monitor viral presence in communities.

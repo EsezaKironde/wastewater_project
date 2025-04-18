@@ -1,8 +1,9 @@
 #set directory to project directory
 
+
 #Eseza's computer: setwd("C:/Users/nesez/OneDrive/Desktop/Data_Science_Toolkit/midterm/wastewater_project")
 
-#Zoli's computer: setw("/Users/zolismith/Desktop/wastewater_project")
+#Zoli's computer: setwd("/Users/zolismith/Desktop/wastewater_project")
 
 
 here::i_am("code/1_summary_statistics.R")
@@ -22,22 +23,15 @@ table_one <-raw_wastewater_data %>%
   ) %>%
   arrange(desc(n_sewersheds))
 
-saveRDS(table_one, here("output", "table_one.rds"))
-
-
-
-
-
-
-
-
-
-
-
-
-
+saveRDS(
+  table_one,
+  file = here::here("output/table_one.rds")
+)
 
 
 
 
 print("I did step 1 without any errors!")
+=======
+
+
