@@ -3,7 +3,7 @@
 
 #Eseza's computer: setwd("C:/Users/nesez/OneDrive/Desktop/Data_Science_Toolkit/midterm/wastewater_project")
 
-#Zoli's computer: 
+#Zoli's computer: setw("/Users/zolismith/Desktop/wastewater_project")
 
 
 here::i_am("code/0_clean_data.R")
