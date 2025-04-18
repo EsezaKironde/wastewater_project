@@ -39,8 +39,16 @@ table_one
 
 ## Time series plot
 
-```{r, time-series}
+This section presents a temporal analysis of SARS-CoV-2 viral concentrations in **Fulton County, Georgia**. The time-series plot below visualizes the 15-day average viral concentration (`ptc_15d`) over time, overlaid with a 7-day rolling average to reveal smoothed trends. Red dots indicate local peaks in viral load, potentially signaling waves of infection. A monthly summary table is included to highlight changes in average and maximum concentration over time.
 
+
+```{r, time-series}
+# Include time series plot with rolling average and peaks
+knitr::include_graphics(here::here("output", "fulton_time_series.png"))
+
+# Load and display monthly summary table
+monthly_stats <- readRDS(here::here("output", "fulton_monthly_summary.rds"))
+knitr::kable(monthly_stats, caption = "Table 2: Monthly Summary of ptc_15d in Fulton County")
 ```
 
 
