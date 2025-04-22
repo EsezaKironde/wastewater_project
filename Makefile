@@ -13,3 +13,7 @@ output/monthly_wastewater_changes.png: data/clean_data.rds code/2_time_series_pl
 
 clean:
 	rm -f output/*.rds output/*.png Wastewater_Analysis.html
+
+
+install:
+		Rscript -e 'if (!requireNamespace("renv", quietly = TRUE)) install.packages("renv"); renv::restore()'
